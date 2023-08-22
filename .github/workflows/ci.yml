@@ -18,11 +18,11 @@ jobs:
 
       - name: install deps
         run: |
-          cargo install cbindgen
           sudo apt update && apt install -y make llvm-dev libclang-dev clang pkg-config unzip curl default-jdk build-essential
 
       - name: build
         run: |
+          cargo install cbindgen
           export RUSTFLAGS="-Z strip=symbols"
           export ANDROID_HOME=/tmp/Android/sdk
           export NDK_HOME=/tmp/Android/sdk/ndk-bundle
