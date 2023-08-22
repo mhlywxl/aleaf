@@ -23,7 +23,6 @@ jobs:
       - name: build
         run: |
           cargo install cbindgen
-          export RUSTFLAGS="-Z strip=symbols"
           export ANDROID_HOME=/tmp/Android/sdk
           export NDK_HOME=/tmp/Android/sdk/ndk-bundle
           export PATH=$ANDROID_HOME/cmdline-tools/bin:$PATH
