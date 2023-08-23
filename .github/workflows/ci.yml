@@ -18,7 +18,7 @@ jobs:
 
       - name: install deps
         run: |
-          sudo apt update && sudo apt install -y unzip curl default-jdk gcc build-essential make llvm-dev libclang-dev clang pkg-config libssl
+          sudo apt update && sudo apt install -y unzip curl default-jdk gcc build-essential make llvm-dev libclang-dev clang pkg-config libssl-dev
 
       - name: build
         run: |
