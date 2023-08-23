@@ -14,15 +14,15 @@ jobs:
       - name: install rust toolchain
         uses: hecrj/setup-rust-action@v1
         with:
-          rust-version: stable
+          rust-version: nightly
 
       - name: install deps
         run: |
-          sudo apt update && sudo apt install -y make llvm-dev libclang-dev clang pkg-config unzip curl default-jdk build-essential libunwind-dev
+          sudo apt update && sudo apt install -y unzip curl default-jdk gcc build-essential make llvm-dev libclang-dev clang pkg-config libssl
 
       - name: build
         run: |
-          cargo install cbindgen
+          export RUSTFLAGS="-Z strip=symbols"
           export ANDROID_HOME=/tmp/Android/sdk
           export NDK_HOME=/tmp/Android/sdk/ndk-bundle
           export PATH=$ANDROID_HOME/cmdline-tools/bin:$PATH
@@ -37,6 +37,7 @@ jobs:
           yes | sdkmanager --sdk_root=$ANDROID_HOME --licenses
           sdkmanager --sdk_root=$ANDROID_HOME "ndk-bundle" "platforms;android-21"
           cd $WD
+          pwd
           # add targets
           rustup target add aarch64-linux-android x86_64-linux-android
           # build
